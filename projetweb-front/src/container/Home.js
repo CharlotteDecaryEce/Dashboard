@@ -41,7 +41,7 @@ export default class Home extends Component {
           <br>
               
             </br>
-          <h3>Quel sont les genres qui ont le plus de succès?</h3>
+          <h3>Quel sont les genres qui sont le plus répendus?</h3>
           <Genres/></Col> 
 
           <Col xs="12" md="12" lg="4">
