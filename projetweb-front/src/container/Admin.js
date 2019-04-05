@@ -154,7 +154,7 @@ export default class  Admin extends Component {
 			
       <Col>
       <Form onSubmit={this.onSubmit_track}>
-			<h3> Single</h3>
+			<h3> Morceau</h3>
 				<div className ="form-group">
         <label>Title:</label>
 					<input type="text" className="form-control" onChange={this.onChangeTitle_tracks}/>

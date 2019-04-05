@@ -45,13 +45,14 @@ export default class Barchart extends PureComponent {
           Likes: element.Likes
         });
       });
-    }).then(function(){
+    }).then(function(){ 
       self.setState({data1:data1});
     })
   }
 
   render() {
     return (
+      
       <BarChart
         width={400}
         height={300}
