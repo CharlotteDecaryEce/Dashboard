@@ -2,33 +2,53 @@ import React, { PureComponent } from 'react';
 import {
   BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import axios from 'axios';
 
-const data = [
-  {
-    name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-  },
-  {
-    name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-  },
-  {
-    name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-  },
-  {
-    name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-  },
-  {
-    name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-  },
-  {
-    name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-  },
-  {
-    name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-  },
-];
+
 
 export default class Barchart extends PureComponent {
-  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
+  state={ data1 : [
+    {
+      name: 'Page A', Ecoutes: 4000, Likes: 2400, 
+    },
+    {
+      name: 'Page B', Ecoutes: 3000, Likes: 1398, 
+    },
+    {
+      name: 'Page C', Ecoutes: 2000, Likes: 9800, 
+    },
+    {
+      name: 'Page D', Ecoutes: 2780, Likes: 3908, 
+    },
+    {
+      name: 'Page E', Ecoutes: 1890, Likes: 4800, 
+    },
+    {
+      name: 'Page F', Ecoutes: 2390, Likes: 3800, 
+    },
+    {
+      name: 'Page G', Ecoutes: 3490, Likes: 4300, 
+    },
+  ]};
+
+  constructor(props){
+    super(props);
+    var data1=[];
+    var self=this;
+  
+    axios.get('http://localhost:3001/tracks').then(res =>{
+      console.log(res);
+      res.data.forEach(element =>{
+        data1.push({
+          name: element.Title,
+          Ecoutes: element.Listenings,
+          Likes: element.Likes
+        });
+      });
+    }).then(function(){
+      self.setState({data1:data1});
+    })
+  }
 
   render() {
     return (
@@ -38,7 +58,7 @@ export default class Barchart extends PureComponent {
         margin={{
             top: 10, right: 10, left: 0, bottom: 0,
           }}
-        data={data}
+        data={this.state.data1}
        
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -46,8 +66,8 @@ export default class Barchart extends PureComponent {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" fill="#8884d8" />
-        <Bar dataKey="uv" fill="#82ca9d" />
+        <Bar dataKey="Likes" fill="#8884d8" />
+        <Bar dataKey="Ecoutes" fill="#82ca9d" />
       </BarChart>
     );
   }

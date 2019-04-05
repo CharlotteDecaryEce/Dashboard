@@ -16,7 +16,6 @@ exports.create = (req, res) => {
     Nom: req.body.Nom,
     Birth: req.body.Birth,
     Followers:req.body.Followers,
-    Albums:req.body.Albums,
   });
 
   // Save User in the database

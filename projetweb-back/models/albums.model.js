@@ -10,7 +10,6 @@ const Albums = new mongoose.Schema(
       
     Cover:String,
 
-    Track:String,
   },
 );
 

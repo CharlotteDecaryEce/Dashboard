@@ -7,8 +7,6 @@ const Artistes = new mongoose.Schema(
     Birth: String,
       
     Followers: String,
-      
-    Albums:String,
   },
 );
 

@@ -12,8 +12,8 @@ class App extends Component {
       <Col>
       <div className="App-header">
         <header>
-          <Link to="/"><button className="but">Home</button></Link>
-          <Link to="/admin"><button className="but">Admin</button></Link>
+          <Link to="/"><button className="but">Dashboard</button></Link>
+          <Link to="/admin"><button className="but">Ajouter un artiste, album ou single</button></Link>
         </header>
         
       </div>

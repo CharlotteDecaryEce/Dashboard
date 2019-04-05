@@ -11,15 +11,12 @@ export default class  Admin extends Component {
 		Nom: '',
 		Birth:'',
 		Followers:'',
-		Albums:'',
+		Title:'',
 		Genre:'',
 		Cover:'',
-		Title:'',
-		Track:'',
 		Duration:'',
 		Listenings:'',
 		Likes:'',
-		Featuring:''
 }
 		
   onChangeNom = event => {
@@ -31,10 +28,8 @@ export default class  Admin extends Component {
 	onChangeFollowers= event => {
     this.setState({Followers: event.target.value});
 	}
-	onChangeAlbums= event => { 
-    this.setState({Albums: event.target.value});
-	}
-	onChangeTitleAl= event => { 
+
+	onChangeTitle_albums= event => { 
     this.setState({Title: event.target.value});
 	}
 	onChangeGenre= event => { 
@@ -43,10 +38,8 @@ export default class  Admin extends Component {
 	onChangeCover= event => { 
     this.setState({Cover: event.target.value});
 	}
-	onChangeTrack= event => { 
-    this.setState({Track: event.target.value});
-	}
-	onChangeTitleTr= event => { 
+	
+	onChangeTitle_tracks= event => { 
     this.setState({Title: event.target.value});
 	}
 	onChangeDuration= event => { 
@@ -58,31 +51,14 @@ export default class  Admin extends Component {
 	onChangeLikes= event => { 
     this.setState({Likes: event.target.value});
 	}
-	onChangeFeaturing= event => { 
-    this.setState({Featuring: event.target.value});
-	}
 
-  onSubmitt= event => { 
-		event.preventDefault();
-		var artistes = {
-			Nom: this.state.Nom,
-			Birth: this.state.Birth,
-			Followers: this.state.Followers, 
-			Albums: this.state.Albums
-		}
-		axios.put('http://localhost:3001/artistes',artistes)
-		.then(res =>{
-			console.log(res);
-			console.log(res.data);
-		} )
-	}
-	onSubmitt= event => { 
+  
+	onSubmit_album= event => { 
 		event.preventDefault();
 		var albums = {
 			Title: this.state.Title,
 			Genre: this.state.Genre,
-			Cover: this.state.Cover, 
-			Track: this.state.Track
+			Cover: this.state.Cover
 		}
 		axios.put('http://localhost:3001/albums',albums)
 		.then(res =>{
@@ -90,15 +66,28 @@ export default class  Admin extends Component {
 			console.log(res.data);
 		} )
 	}
+
+	onSubmit_artiste= event => { 
+		event.preventDefault();
+		var artistes = {
+			Nom: this.state.Nom,
+			Birth: this.state.Birth,
+			Followers: this.state.Followers
+		}
+		axios.put('http://localhost:3001/artistes',artistes)
+		.then(res =>{
+			console.log(res);
+			console.log(res.data);
+		} )
+	}
 	
-	onSubmitt= event => { 
+	onSubmit_track= event => { 
 		event.preventDefault();
 		var tracks = {
 			Title: this.state.Title,
 			Duration: this.state.Duration,
 			Listenings: this.state.Listenings, 
-			Likes: this.state.Likes,
-			Featuring: this.state.Featuring
+			Likes: this.state.Likes
 		}
 		axios.put('http://localhost:3001/tracks',tracks)
 		.then(res =>{
@@ -112,7 +101,7 @@ export default class  Admin extends Component {
 			<Container fluid>
       <Row>
       <Col>
-      <Form onSubmit={this.onSubmitt}>
+      <Form onSubmit={this.onSubmit_artiste}>
 		<h3>Artiste</h3>
 				<div className ="form-group">
         <label>Name:</label>
@@ -129,10 +118,6 @@ export default class  Admin extends Component {
 					<input type="text" className="form-control" onChange={this.onChangeFollowers}/>
 				</div>
 
-				<div className ="form-group">
-        <label>Albums:</label>
-					<input type="text" className="form-control" onChange={this.onChangeAlbums} />
-				</div>
 
 				<div className ="form-group">
         <input type="submit" value="Submit" className="btn btn-primary" />
@@ -142,11 +127,11 @@ export default class  Admin extends Component {
 		
 			
       <Col>
-      <Form onSubmit={this.onSubmitt}>
+      <Form onSubmit={this.onSubmit_album}>
 			<h3> Album</h3>
 				<div className ="form-group">
         <label>Title:</label>
-					<input type="text" className="form-control" onChange={this.onChangeTitleAl}/>
+					<input type="text" className="form-control" onChange={this.onChangeTitle_albums}/>
 				</div>
 
 				<div className ="form-group">
@@ -159,10 +144,7 @@ export default class  Admin extends Component {
 					<input type="text" className="form-control" onChange={this.onChangeCover}/>
 				</div>
 
-				<div className ="form-group">
-        <label>Track:</label>
-					<input type="text" className="form-control" onChange={this.onChangeTrack} />
-				</div>
+		
 
 				<div className ="form-group">
         <input type="submit" value="Submit" className="btn btn-primary" />
@@ -171,11 +153,11 @@ export default class  Admin extends Component {
 			</Col>
 			
       <Col>
-      <Form onSubmit={this.onSubmitt}>
-			<h3> Tracks</h3>
+      <Form onSubmit={this.onSubmit_track}>
+			<h3> Single</h3>
 				<div className ="form-group">
         <label>Title:</label>
-					<input type="text" className="form-control" onChange={this.onChangeTitleTr}/>
+					<input type="text" className="form-control" onChange={this.onChangeTitle_tracks}/>
 				</div>
 
 				<div className ="form-group">
@@ -193,10 +175,6 @@ export default class  Admin extends Component {
 					<input type="text" className="form-control" onChange={this.onChangeLikes}/>
 				</div>
 
-				<div className ="form-group">
-        <label>Featuring:</label>
-					<input type="text" className="form-control" onChange={this.onChangeFeaturing} />
-				</div>
 
 				<div className ="form-group">
         <input type="submit" value="Submit" className="btn btn-primary" />

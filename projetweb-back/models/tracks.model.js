@@ -9,8 +9,6 @@ const Tracks = new mongoose.Schema(
     Listenings: String,
       
     Likes: String,
-      
-    Featuring:String,
   },
 );
 

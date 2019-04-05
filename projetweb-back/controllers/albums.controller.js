@@ -15,16 +15,15 @@ exports.create = (req, res) => {
   const albums = new Albums({
     Title: req.body.Title,
     Release: req.body.Release,
-    Genre: req.body.Cover,
+    Genre: req.body.Genre,
     Cover:req.body.Cover,
-    Track:req.body.Track,
   });
 
   // Save User in the database
   albums
     .save()
     .then(data => {
-      // we wait for insertion to be complete and we send the newly user integrated
+      // we wait for insertikjkon to be complete and we send the newly user integrated
       res.send(data);
     })
     .catch(err => {
@@ -71,6 +70,9 @@ Albums.findById(req.params._id)
       });
     });
 };
+
+
+
 
 
 
